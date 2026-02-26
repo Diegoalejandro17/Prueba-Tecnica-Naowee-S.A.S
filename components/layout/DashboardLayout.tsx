@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
@@ -28,7 +28,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-background">
+      <div style={{minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#0a0f0d'}}>
         <LoadingSpinner size="lg" text="Cargando..." />
       </div>
     );
@@ -37,19 +37,25 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   if (!isAuthenticated) return null;
 
   return (
-    <div className="relative min-h-screen bg-background text-text-primary">
+    <div style={{minHeight: '100vh', backgroundColor: '#0a0f0d', color: '#f0fdf4', position: 'relative'}}>
 
-      <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-accent/5 rounded-full blur-3xl" />
+      {/* Fondo decorativo */}
+      <div style={{position: 'fixed', inset: 0, overflow: 'hidden', pointerEvents: 'none', zIndex: 0}}>
+        <div style={{position: 'absolute', top: 0, left: '25%', width: '400px', height: '400px', background: 'rgba(34,197,94,0.05)', borderRadius: '50%', filter: 'blur(80px)'}} />
+        <div style={{position: 'absolute', bottom: '25%', right: '25%', width: '300px', height: '300px', background: 'rgba(34,197,94,0.03)', borderRadius: '50%', filter: 'blur(80px)'}} />
       </div>
 
       <Navbar />
 
-      <main style={{position: 'relative', zIndex: 10, maxWidth: '1280px', margin: '0 auto', padding: '0 1.5rem 3rem 1.5rem'}}>
+      <main style={{
+        position: 'relative',
+        zIndex: 10,
+        maxWidth: '1280px',
+        margin: '0 auto',
+        padding: '80px 1.5rem 3rem 1.5rem',
+      }}>
         {children}
       </main>
-
     </div>
   );
 }
