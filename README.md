@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏟️ AgendaGol — Prueba Técnica Naowee S.A.S
 
-## Getting Started
+Plataforma web para la gestión y reserva de canchas de fútbol. Desarrollada como prueba técnica para la empresa Naowee S.A.S.
 
-First, run the development server:
+---
+
+## 🚀 Tecnologías utilizadas
+
+- **Next.js 15** — Framework de React con App Router
+- **TypeScript** — Tipado estático
+- **Tailwind CSS** — Estilos utilitarios
+- **Axios** — Peticiones HTTP al backend
+- **Zustand** — Manejo de estado global
+
+---
+
+## 📁 Estructura del proyecto
+
+```
+├── app/                  # Rutas y páginas (App Router)
+│   ├── (auth)/           # Páginas de autenticación
+│   └── (dashboard)/      # Páginas del dashboard
+│       ├── admin/        # Panel de administración
+│       ├── canchas/      # Gestión de canchas
+│       └── reservas/     # Gestión de reservas
+├── components/           # Componentes reutilizables
+├── lib/                  # Configuración de axios y utilidades
+├── store/                # Estado global con Zustand
+├── types/                # Tipos TypeScript
+└── public/               # Archivos estáticos
+```
+
+---
+
+## ⚙️ Instalación y ejecución
+
+### 1. Clonar el repositorio
+
+```bash
+git clone https://github.com/Diegoalejandro17/Prueba-Tecnica-Naowee-S.A.S.git
+cd Prueba-Tecnica-Naowee-S.A.S
+```
+
+### 2. Instalar dependencias
+
+```bash
+npm install
+```
+
+### 3. Configurar variables de entorno
+
+Crea un archivo `.env.local` en la raíz del proyecto:
+
+```env
+NEXT_PUBLIC_AUTH_API_URL=http://localhost:8001
+NEXT_PUBLIC_FIELDS_API_URL=http://localhost:8002
+NEXT_PUBLIC_RESERVATIONS_API_URL=http://localhost:8003
+```
+
+### 4. Ejecutar el proyecto
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ✨ Funcionalidades
 
-## Learn More
+- **Autenticación** — Login y registro de usuarios
+- **Gestión de canchas** — Listado y disponibilidad de canchas
+- **Reservas** — Crear, ver y cancelar reservas
+- **Panel de administración** — Gestión completa para administradores
+- **Disponibilidad en tiempo real** — Consulta de horarios disponibles por cancha y fecha
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🏗️ Arquitectura
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+El frontend consume una API basada en **microservicios**:
 
-## Deploy on Vercel
+| Servicio | Descripción |
+|---|---|
+| `auth_service` | Autenticación y manejo de usuarios |
+| `fields_service` | Gestión de canchas y disponibilidad |
+| `reservations_service` | Gestión de reservas |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 👨‍💻 Autor
+
+**Diego Alejandro** — [@Diegoalejandro17](https://github.com/Diegoalejandro17)
