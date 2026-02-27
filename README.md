@@ -46,6 +46,7 @@ agendagol-frontend/
 
 ### Prerrequisitos
 - Node.js 18+
+- Docker correctamente instalado
 - Backend corriendo (para obtener mas informacion sobre el backend ir al siguiente link 👉 [agendaGol](https://github.com/javiermercado1/agendaGol))
 
 
