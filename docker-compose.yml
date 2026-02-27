@@ -1,0 +1,46 @@
+version: '3.9'
+
+services:
+  auth-service:
+    build: ./backend/auth-service
+    container_name: auth-service
+    ports:
+      - "8000:8000"
+
+  roles-service:
+    build: ./backend/roles-service
+    container_name: roles-service
+    ports:
+      - "8001:8001"
+
+  fields-service:
+    build: ./backend/fields-service
+    container_name: fields-service
+    ports:
+      - "8002:8002"
+
+  reservations-service:
+    build: ./backend/reservations-service
+    container_name: reservations-service
+    ports:
+      - "8003:8003"
+
+  dashboard-service:
+    build: ./backend/dashboard-service
+    container_name: dashboard-service
+    ports:
+      - "8004:8004"
+
+  frontend:
+    build: ./frontend
+    container_name: agendagol_frontend
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./frontend/.env.docker
+    depends_on:
+      - auth-service
+      - roles-service
+      - fields-service
+      - reservations-service
+      - dashboard-service
