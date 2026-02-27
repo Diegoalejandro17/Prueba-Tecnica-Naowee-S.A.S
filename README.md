@@ -58,7 +58,16 @@ git clone https://github.com/Diegoalejandro17/Prueba-Tecnica-Naowee-S.A.S.git
 cd Prueba-Tecnica-Naowee-S.A.S
 ```
 
-### 2. Levantar el frontend
+### 2. Crea un archivo `.env.local` en la raíz del proyecto:
+```env
+NEXT_PUBLIC_AUTH_URL=http://localhost:8000
+NEXT_PUBLIC_ROLES_URL=http://localhost:8001
+NEXT_PUBLIC_FIELDS_URL=http://localhost:8002
+NEXT_PUBLIC_RESERVATIONS_URL=http://localhost:8003
+NEXT_PUBLIC_DASHBOARD_URL=http://localhost:8004
+```
+
+### 3. Levantar el frontend
 ```bash
 Una vez clonado el repositorio ejecutar los siguientes comandos:
 docker build -t agendagol-frontend .
