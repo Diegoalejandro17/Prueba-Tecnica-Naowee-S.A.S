@@ -127,25 +127,38 @@ El frontend consume una API basada en microservicios:
 Después de levantar el backend con Docker, sigue estos pasos para crear un usuario admin:
 
 ### 1. Registra un usuario desde la app
-Ve a http://localhost:3000/register y crea una cuenta.
+Ve a http://localhost:3000/register y crea una cuenta normal.
 
 ### 2. Conviértelo en admin desde la base de datos
 
-*En Linux/Mac:*
+Primero necesitas saber el nombre exacto del contenedor de auth. Ejecuta el siguiente comando en la terminal donde tengas corriendo el backend:
+
 bash
-docker exec -it $(docker ps --filter "name=auth" --format "{{.Names}}") python3 -c "import sqlite3; conn=sqlite3.connect('auth.db'); conn.execute('UPDATE users SET is_admin=1 WHERE email=\"tu@email.com\"'); conn.commit(); print('OK')"
+docker ps
+
+
+Busca en la columna NAMES el contenedor que tenga auth en el nombre. Por ejemplo: agendagol-auth_service-1.
+
+Luego ejecuta el siguiente comando reemplazando:
+- agendagol-auth_service-1 → por el nombre real de tu contenedor
+- tu@email.com → por el email del usuario que registraste
+
+*En Linux/Mac (Terminal):*
+bash
+docker exec -it agendagol-auth_service-1 python3 -c "import sqlite3; conn=sqlite3.connect('auth.db'); conn.execute('UPDATE users SET is_admin=1 WHERE email=\"tu@email.com\"'); conn.commit(); print('OK')"
 
 
 *En Windows (PowerShell):*
 powershell
-docker exec -it agendagol-auth_service-1 python3 -c "import sqlite3; conn=sqlite3.connect('auth.db'); conn.execute('UPDATE users SET is_admin=1 WHERE email=\"tu@email.com\"'); conn.commit(); print('OK')"
+docker exec -it agendagol-auth_service-1 python3 -c "import sqlite3; conn=sqlite3.connect('auth.db'); conn.execute('UPDATE users SET is_admin=1 WHERE email=""tu@email.com""'); conn.commit(); print('OK')"
 
 
-> Reemplaza tu@email.com con el email del usuario registrado y agendagol-auth_service-1 con el nombre real del contenedor de auth (`docker ps` para verlo).
+Si el comando fue exitoso verás OK en la consola.
+
+> *¿Por qué esto?* El backend no expone un endpoint público para crear admins por seguridad. La única forma es modificar directamente la base de datos SQLite que corre dentro del contenedor de Docker.
 
 ### 3. Vuelve a iniciar sesión
-Cierra sesión y vuelve a entrar. Ya tendrás acceso al *Dashboard Admin*.
-
+Cierra sesión en la app y vuelve a entrar con el mismo usuario. Ahora verás la opción *Dashboard* en el navbar y tendrás acceso al panel de administración con todas las estadísticas del sistema.
 
 ---
 ## 😀 Despliegue
