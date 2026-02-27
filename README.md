@@ -21,6 +21,7 @@ Plataforma web para la gestión y reserva de canchas de fútbol. Desarrollada co
 ```
 agendagol-frontend/
 ├── app/
+│   ├── page.tsx            # Página principal
 │   ├── (auth)/
 │   │   ├── login/          # Página de inicio de sesión
 │   │   └── register/       # Página de registro
