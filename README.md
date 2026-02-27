@@ -118,7 +118,6 @@ El frontend consume una API basada en microservicios:
 - **Zustand sobre Redux**: Estado global liviano y sin boilerplate, ideal para manejar solo el estado de autenticación.
 - **Una instancia de Axios por microservicio**: Permite configurar baseURL independiente para cada servicio y agregar interceptores de autenticación de forma centralizada.
 - **Estilos inline sobre Tailwind**: Dado que el proyecto usa Tailwind v4 (que cambió su sistema de configuración), se optó por estilos inline para garantizar consistencia visual en todos los componentes.
-- **Diseño "Campo Nocturno"**: Dark mode con verde (#22c55e) como color acento, tipografía Syne para títulos y DM Sans para cuerpo de texto, creando una estética profesional con identidad deportiva.
 
 ---
 
