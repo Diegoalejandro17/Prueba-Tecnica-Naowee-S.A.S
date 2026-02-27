@@ -14,7 +14,7 @@ Plataforma web para la gestión y reserva de canchas de fútbol. Desarrollada co
 | **Axios** | Peticiones HTTP a los microservicios |
 | **Zustand** | Manejo de estado global (autenticación) |
 | **JWT** | Autenticación stateless con tokens |
-
+| **Docker***| Contenedores docker |
 ---
 
 ## 📁 Estructura del proyecto
