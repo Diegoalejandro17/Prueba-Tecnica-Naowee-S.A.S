@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { dashboardApi } from '@/lib/axios';
-import { DashboardStats } from '@/types';
 import { useAuthStore } from '@/store/authStore';
 import DashboardLayout from '@/components/layout/DashboardLayout';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
@@ -11,7 +10,7 @@ import LoadingSpinner from '@/components/ui/LoadingSpinner';
 export default function AdminPage() {
   const { user } = useAuthStore();
   const router = useRouter();
-  const [stats, setStats] = useState<DashboardStats | null>(null);
+  const [stats, setStats] = useState<any>(null);
   const [fieldStats, setFieldStats] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -31,9 +30,8 @@ export default function AdminPage() {
         dashboardApi.get('/dashboard/stats', { headers }),
         dashboardApi.get('/dashboard/fields/stats', { headers }),
       ]);
-      setStats(statsRes.data);
-      const fsData = fieldStatsRes.data;
-      setFieldStats(Array.isArray(fsData) ? fsData : fsData.fields ?? fsData.data ?? []);
+      setStats(statsRes.data.general_stats);
+      setFieldStats(fieldStatsRes.data.fields_statistics ?? []);
     } catch (err) {
       console.error('Error al cargar estadísticas:', err);
     } finally {
@@ -45,14 +43,15 @@ export default function AdminPage() {
     { label: 'Total Usuarios', value: stats.total_users, icon: '👥', color: '#60a5fa', bg: 'rgba(59,130,246,0.1)', border: 'rgba(59,130,246,0.2)' },
     { label: 'Total Canchas', value: stats.total_fields, icon: '🏟️', color: '#22c55e', bg: 'rgba(34,197,94,0.1)', border: 'rgba(34,197,94,0.2)' },
     { label: 'Reservas Activas', value: stats.active_reservations, icon: '📅', color: '#facc15', bg: 'rgba(250,204,21,0.1)', border: 'rgba(250,204,21,0.2)' },
-    { label: 'Ingresos Totales', value: `$${stats.total_revenue}`, icon: '💰', color: '#4ade80', bg: 'rgba(74,222,128,0.1)', border: 'rgba(74,222,128,0.2)' },
+    { label: 'Reservas Hoy', value: stats.reservations_today, icon: '🗓️', color: '#34d399', bg: 'rgba(52,211,153,0.1)', border: 'rgba(52,211,153,0.2)' },
     { label: 'Total Reservas', value: stats.total_reservations, icon: '📊', color: '#c084fc', bg: 'rgba(192,132,252,0.1)', border: 'rgba(192,132,252,0.2)' },
     { label: 'Cancelaciones', value: stats.cancelled_reservations, icon: '❌', color: '#f87171', bg: 'rgba(248,113,113,0.1)', border: 'rgba(248,113,113,0.2)' },
+    { label: 'Canchas Activas', value: stats.active_fields, icon: '✅', color: '#86efac', bg: 'rgba(134,239,172,0.1)', border: 'rgba(134,239,172,0.2)' },
   ] : [];
 
   return (
     <DashboardLayout>
-      <div style={{paddingTop: '80px', fontFamily: 'DM Sans, sans-serif'}}>
+      <div style={{fontFamily: 'DM Sans, sans-serif'}}>
 
         {/* Header */}
         <div style={{marginBottom: '2rem'}}>
@@ -71,7 +70,7 @@ export default function AdminPage() {
         ) : (
           <>
             {/* Stats grid */}
-            <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '1rem', marginBottom: '2rem'}}>
+            <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '1rem', marginBottom: '2rem'}}>
               {statCards.map((stat, i) => (
                 <div key={i} style={{
                   background: '#111a15',
@@ -79,7 +78,10 @@ export default function AdminPage() {
                   borderRadius: '14px',
                   padding: '1.5rem',
                   transition: 'all 0.2s',
-                }}>
+                }}
+                  onMouseEnter={(e) => e.currentTarget.style.borderColor = 'rgba(34,197,94,0.3)'}
+                  onMouseLeave={(e) => e.currentTarget.style.borderColor = 'rgba(34,197,94,0.12)'}
+                >
                   <div style={{
                     display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
                     width: '44px', height: '44px',
@@ -95,7 +97,7 @@ export default function AdminPage() {
                     {stat.label}
                   </p>
                   <p style={{fontFamily: 'Syne, sans-serif', fontWeight: 800, fontSize: '1.75rem', color: stat.color, margin: 0}}>
-                    {stat.value}
+                    {stat.value ?? 0}
                   </p>
                 </div>
               ))}
@@ -114,7 +116,6 @@ export default function AdminPage() {
                   📈 Tasa de Ocupación
                 </h2>
                 <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem'}}>
-
                   <div>
                     <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem'}}>
                       <span style={{color: '#86efac', fontSize: '0.875rem'}}>Reservas activas</span>
@@ -126,13 +127,10 @@ export default function AdminPage() {
                       <div style={{
                         width: `${(stats.active_reservations / stats.total_reservations) * 100}%`,
                         background: 'linear-gradient(90deg, #16a34a, #22c55e)',
-                        height: '8px',
-                        borderRadius: '999px',
-                        transition: 'width 0.7s ease',
+                        height: '8px', borderRadius: '999px',
                       }} />
                     </div>
                   </div>
-
                   <div>
                     <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem'}}>
                       <span style={{color: '#86efac', fontSize: '0.875rem'}}>Cancelaciones</span>
@@ -144,9 +142,7 @@ export default function AdminPage() {
                       <div style={{
                         width: `${(stats.cancelled_reservations / stats.total_reservations) * 100}%`,
                         background: 'linear-gradient(90deg, #dc2626, #f87171)',
-                        height: '8px',
-                        borderRadius: '999px',
-                        transition: 'width 0.7s ease',
+                        height: '8px', borderRadius: '999px',
                       }} />
                     </div>
                   </div>
@@ -169,7 +165,7 @@ export default function AdminPage() {
                   <table style={{width: '100%', borderCollapse: 'collapse'}}>
                     <thead>
                       <tr style={{borderBottom: '1px solid rgba(34,197,94,0.1)'}}>
-                        {['Cancha', 'Reservas', 'Ingresos'].map(h => (
+                        {['Cancha', 'Ubicación', 'Total Reservas', 'Activas', 'Canceladas', 'Ingresos'].map(h => (
                           <th key={h} style={{
                             textAlign: 'left', padding: '10px 12px',
                             color: '#4ade80', fontSize: '0.75rem',
@@ -181,21 +177,32 @@ export default function AdminPage() {
                     </thead>
                     <tbody>
                       {fieldStats.map((field, i) => (
-                        <tr key={i} style={{
-                          borderBottom: '1px solid rgba(34,197,94,0.05)',
-                          transition: 'background 0.15s',
-                        }}
+                        <tr key={i}
+                          style={{borderBottom: '1px solid rgba(34,197,94,0.05)', transition: 'background 0.15s'}}
                           onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(34,197,94,0.03)'}
                           onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
                         >
-                          <td style={{padding: '12px', color: '#f0fdf4', fontSize: '0.875rem', fontWeight: 500}}>
-                            {field.field_name || field.name}
+                          <td style={{padding: '12px', color: '#f0fdf4', fontSize: '0.875rem', fontWeight: 600}}>
+                            {field.field_name}
                           </td>
-                          <td style={{padding: '12px', color: '#86efac', fontSize: '0.875rem'}}>
-                            {field.total_reservations ?? field.reservations ?? 0}
+                          <td style={{padding: '12px', color: '#86efac', fontSize: '0.8125rem'}}>
+                            {field.field_location}
+                          </td>
+                          <td style={{padding: '12px', color: '#c084fc', fontSize: '0.875rem', fontWeight: 600}}>
+                            {field.total_reservations ?? 0}
+                          </td>
+                          <td style={{padding: '12px'}}>
+                            <span style={{background: 'rgba(34,197,94,0.1)', border: '1px solid rgba(34,197,94,0.2)', color: '#22c55e', fontSize: '0.75rem', fontWeight: 600, padding: '3px 10px', borderRadius: '999px'}}>
+                              {field.confirmed_reservations ?? 0}
+                            </span>
+                          </td>
+                          <td style={{padding: '12px'}}>
+                            <span style={{background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.2)', color: '#f87171', fontSize: '0.75rem', fontWeight: 600, padding: '3px 10px', borderRadius: '999px'}}>
+                              {field.cancelled_reservations ?? 0}
+                            </span>
                           </td>
                           <td style={{padding: '12px', color: '#22c55e', fontFamily: 'Syne, sans-serif', fontWeight: 700, fontSize: '0.9375rem'}}>
-                            ${field.total_revenue ?? field.revenue ?? 0}
+                            ${field.total_revenue ?? 0}
                           </td>
                         </tr>
                       ))}

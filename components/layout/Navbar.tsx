@@ -41,7 +41,6 @@ export default function Navbar() {
         justifyContent: 'space-between',
       }}>
 
-        {/* Logo */}
         <Link href="/canchas" style={{textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '10px'}}>
           <div style={{
             width: '36px', height: '36px',
@@ -57,7 +56,6 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* Links */}
         <div style={{display: 'flex', alignItems: 'center', gap: '4px'}}>
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
@@ -97,10 +95,8 @@ export default function Navbar() {
           })}
         </div>
 
-        {/* Usuario */}
         <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
 
-          {/* Info usuario */}
           <div style={{textAlign: 'right'}}>
             <p style={{color: '#f0fdf4', fontSize: '0.875rem', fontWeight: 500, margin: 0, lineHeight: 1.2}}>
               {user?.username}
@@ -110,7 +106,6 @@ export default function Navbar() {
             </p>
           </div>
 
-          {/* Avatar */}
           <div style={{
             width: '36px', height: '36px',
             borderRadius: '50%',
@@ -124,10 +119,8 @@ export default function Navbar() {
             </span>
           </div>
 
-          {/* Separador */}
           <div style={{width: '1px', height: '24px', background: 'rgba(34,197,94,0.15)'}} />
 
-          {/* Logout */}
           <button
             onClick={handleLogout}
             style={{

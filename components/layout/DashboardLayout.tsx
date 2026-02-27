@@ -39,7 +39,6 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   return (
     <div style={{minHeight: '100vh', backgroundColor: '#0a0f0d', color: '#f0fdf4', position: 'relative'}}>
 
-      {/* Fondo decorativo */}
       <div style={{position: 'fixed', inset: 0, overflow: 'hidden', pointerEvents: 'none', zIndex: 0}}>
         <div style={{position: 'absolute', top: 0, left: '25%', width: '400px', height: '400px', background: 'rgba(34,197,94,0.05)', borderRadius: '50%', filter: 'blur(80px)'}} />
         <div style={{position: 'absolute', bottom: '25%', right: '25%', width: '300px', height: '300px', background: 'rgba(34,197,94,0.03)', borderRadius: '50%', filter: 'blur(80px)'}} />

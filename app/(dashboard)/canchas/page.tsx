@@ -85,7 +85,6 @@ export default function CanchasPage() {
                 transition: 'all 0.3s',
               }}>
 
-                {/* Header card */}
                 <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem'}}>
                   <div style={{
                     width: '44px', height: '44px',
@@ -126,7 +125,6 @@ export default function CanchasPage() {
                   <span style={{fontSize: '0.75rem', color: '#86efac'}}>👥 {field.capacity} jugadores</span>
                 </div>
 
-                {/* Disponibilidad */}
                 {selectedField?.id === field.id ? (
                   <div style={{borderTop: '1px solid rgba(34,197,94,0.1)', paddingTop: '1rem'}}>
                     <p style={{color: '#86efac', fontSize: '0.875rem', marginBottom: '0.75rem'}}>
