@@ -47,38 +47,24 @@ agendagol-frontend/
 - Node.js 18+
 - Backend corriendo (ver [agendaGol](https://github.com/javiermercado1/agendaGol))
 
+
+## ⚙️ Levantar el proyecto con un solo comando
+
 ### 1. Clonar el repositorio
 ```bash
 git clone https://github.com/Diegoalejandro17/Prueba-Tecnica-Naowee-S.A.S.git
 cd Prueba-Tecnica-Naowee-S.A.S
 ```
 
-### 2. Instalar dependencias
+### 2. Levantar el frontend
 ```bash
-npm install
+Una vez clonado el repositorio ejecutar los siguientes comandos:
+docker build -t agendagol-frontend .
+docker run -p 3000:3000 --env-file .env.local agendagol-frontend
 ```
 
-### 3. Configurar variables de entorno
+⚠️ Nota: asegúrate de que el backend ya esté levantado en otro contenedor o localmente, porque el frontend depende de sus endpoints.
 
-Crea un archivo `.env.local` en la raíz del proyecto:
-```env
-NEXT_PUBLIC_AUTH_URL=http://localhost:8000
-NEXT_PUBLIC_ROLES_URL=http://localhost:8001
-NEXT_PUBLIC_FIELDS_URL=http://localhost:8002
-NEXT_PUBLIC_RESERVATIONS_URL=http://localhost:8003
-NEXT_PUBLIC_DASHBOARD_URL=http://localhost:8004
-```
-
-### 4. Levantar el backend
-```bash
-# En la carpeta del backend
-docker-compose up --build
-```
-
-### 5. Ejecutar el frontend
-```bash
-npm run dev
-```
 
 Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
 
