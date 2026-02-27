@@ -58,7 +58,7 @@ git clone https://github.com/Diegoalejandro17/Prueba-Tecnica-Naowee-S.A.S.git
 cd Prueba-Tecnica-Naowee-S.A.S
 ```
 
-### 2. Crea un archivo `.env.local` en la raíz del proyecto:
+### 2. Crea un archivo `.env.docker` en la raíz del proyecto:
 ```env
 NEXT_PUBLIC_AUTH_URL=http://localhost:8000
 NEXT_PUBLIC_ROLES_URL=http://localhost:8001
