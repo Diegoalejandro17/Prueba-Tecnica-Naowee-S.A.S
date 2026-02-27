@@ -46,10 +46,10 @@ agendagol-frontend/
 
 ### Prerrequisitos
 - Node.js 18+
-- Backend corriendo (ver [agendaGol](https://github.com/javiermercado1/agendaGol))
+- Backend corriendo (para obtener mas informacion sobre el backend ir al siguiente link 👉 [agendaGol](https://github.com/javiermercado1/agendaGol))
 
 
-## ⚙️ Levantar el proyecto con un solo comando
+## ⚙️ Levantar el frontend
 
 ### 1. Clonar el repositorio
 ```bash
@@ -67,7 +67,7 @@ docker run -p 3000:3000 --env-file .env.local agendagol-frontend
 ⚠️ Nota: asegúrate de que el backend ya esté levantado en otro contenedor o localmente, porque el frontend depende de sus endpoints.
 
 
-Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
+Despues de levantar el frontend abre [http://localhost:3000](http://localhost:3000) en tu navegador.
 
 ---
 
@@ -78,6 +78,7 @@ Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
 - Inicio de sesión con email y contraseña
 - Protección de rutas según autenticación y rol
 - Persistencia de sesión con localStorage
+- Toda la aplicacion es totalmente responsive
 
 ### 🏟️ Canchas
 - Listado de todas las canchas disponibles
@@ -130,6 +131,11 @@ Rol:      Administrador
 
 > **Nota:** Para acceder al Dashboard Admin, el usuario debe tener `is_admin = true` en la base de datos.
 
+
+---
+## 😀 Despliegue
+
+- Para ver el despliegue ir al siguiente link 👉 [agendaGol](https://prueba-tecnica-naowee-s-a-i5jzqsc07-diegoalejandro17s-projects.vercel.app/)
 ---
 
 ## 👨‍💻 Autor
