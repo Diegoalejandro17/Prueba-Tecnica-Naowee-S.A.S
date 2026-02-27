@@ -122,14 +122,29 @@ El frontend consume una API basada en microservicios:
 
 ---
 
-## 🔐 Credenciales de prueba
-```
-Email:    admin@test.com
-Password: admin123
-Rol:      Administrador
-```
+## 🔧 Configurar usuario Admin
 
-> **Nota:** Para acceder al Dashboard Admin, el usuario debe tener `is_admin = true` en la base de datos.
+Después de levantar el backend con Docker, sigue estos pasos para crear un usuario admin:
+
+### 1. Registra un usuario desde la app
+Ve a http://localhost:3000/register y crea una cuenta.
+
+### 2. Conviértelo en admin desde la base de datos
+
+*En Linux/Mac:*
+bash
+docker exec -it $(docker ps --filter "name=auth" --format "{{.Names}}") python3 -c "import sqlite3; conn=sqlite3.connect('auth.db'); conn.execute('UPDATE users SET is_admin=1 WHERE email=\"tu@email.com\"'); conn.commit(); print('OK')"
+
+
+*En Windows (PowerShell):*
+powershell
+docker exec -it agendagol-auth_service-1 python3 -c "import sqlite3; conn=sqlite3.connect('auth.db'); conn.execute('UPDATE users SET is_admin=1 WHERE email=\"tu@email.com\"'); conn.commit(); print('OK')"
+
+
+> Reemplaza tu@email.com con el email del usuario registrado y agendagol-auth_service-1 con el nombre real del contenedor de auth (`docker ps` para verlo).
+
+### 3. Vuelve a iniciar sesión
+Cierra sesión y vuelve a entrar. Ya tendrás acceso al *Dashboard Admin*.
 
 
 ---
