@@ -67,7 +67,7 @@ export default function RegisterPage() {
 
       <div style={{position: 'relative', zIndex: 10, width: '100%', maxWidth: '420px'}}>
 
-        {/* Logo */}
+        {/* logo */}
         <div style={{textAlign: 'center', marginBottom: '2rem'}}>
           <div style={{
             display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
@@ -88,7 +88,7 @@ export default function RegisterPage() {
           </p>
         </div>
 
-        {/* Card */}
+        {/* card */}
         <div style={{
           background: 'rgba(17, 26, 21, 0.9)',
           backdropFilter: 'blur(12px)',
@@ -103,7 +103,7 @@ export default function RegisterPage() {
 
           <form onSubmit={handleRegister} style={{display: 'flex', flexDirection: 'column', gap: '1.125rem'}}>
 
-            {/* Username */}
+            {/* nombre usuario */}
             <div style={{display: 'flex', flexDirection: 'column', gap: '0.5rem'}}>
               <label style={{fontSize: '0.875rem', fontWeight: 500, color: '#86efac'}}>Usuario</label>
               <div style={{position: 'relative'}}>
@@ -116,7 +116,7 @@ export default function RegisterPage() {
               </div>
             </div>
 
-            {/* Email */}
+            {/* email */}
             <div style={{display: 'flex', flexDirection: 'column', gap: '0.5rem'}}>
               <label style={{fontSize: '0.875rem', fontWeight: 500, color: '#86efac'}}>Correo electrónico</label>
               <div style={{position: 'relative'}}>
@@ -129,7 +129,7 @@ export default function RegisterPage() {
               </div>
             </div>
 
-            {/* Password */}
+            {/* contraseña */}
             <div style={{display: 'flex', flexDirection: 'column', gap: '0.5rem'}}>
               <label style={{fontSize: '0.875rem', fontWeight: 500, color: '#86efac'}}>Contraseña</label>
               <div style={{position: 'relative'}}>
@@ -142,7 +142,7 @@ export default function RegisterPage() {
               </div>
             </div>
 
-            {/* Confirm Password */}
+            {/* confirmar contraseña */}
             <div style={{display: 'flex', flexDirection: 'column', gap: '0.5rem'}}>
               <label style={{fontSize: '0.875rem', fontWeight: 500, color: '#86efac'}}>Confirmar contraseña</label>
               <div style={{position: 'relative'}}>
@@ -170,7 +170,7 @@ export default function RegisterPage() {
               {loading ? 'Creando cuenta...' : 'Crear Cuenta →'}
             </button>
 
-            {/* ✅ Link adentro de la card */}
+            {/* link adentro de la card */}
             <p style={{textAlign: 'center', color: '#4ade80', fontSize: '0.875rem', margin: '0.25rem 0 0 0'}}>
               ¿Ya tienes cuenta?{' '}
               <Link href="/login" style={{color: '#22c55e', fontWeight: 600, textDecoration: 'none'}}>

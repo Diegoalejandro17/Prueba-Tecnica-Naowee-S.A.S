@@ -59,7 +59,7 @@ export default function CanchasPage() {
     <DashboardLayout>
       <div style={{paddingTop: '80px', fontFamily: 'DM Sans, sans-serif'}}>
 
-        {/* Header */}
+        {/* header */}
         <div style={{marginBottom: '2rem'}}>
           <h1 style={{fontFamily: 'Syne, sans-serif', fontWeight: 800, fontSize: '1.875rem', color: '#f0fdf4', margin: 0}}>
             Canchas Disponibles

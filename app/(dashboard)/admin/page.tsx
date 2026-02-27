@@ -53,7 +53,7 @@ export default function AdminPage() {
     <DashboardLayout>
       <div style={{fontFamily: 'DM Sans, sans-serif'}}>
 
-        {/* Header */}
+        {/* header */}
         <div style={{marginBottom: '2rem'}}>
           <h1 style={{fontFamily: 'Syne, sans-serif', fontWeight: 800, fontSize: '1.875rem', color: '#f0fdf4', margin: 0}}>
             Dashboard Admin
@@ -69,7 +69,6 @@ export default function AdminPage() {
           </div>
         ) : (
           <>
-            {/* Stats grid */}
             <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '1rem', marginBottom: '2rem'}}>
               {statCards.map((stat, i) => (
                 <div key={i} style={{
@@ -103,7 +102,6 @@ export default function AdminPage() {
               ))}
             </div>
 
-            {/* Tasa de ocupación */}
             {stats && stats.total_reservations > 0 && (
               <div style={{
                 background: '#111a15',
@@ -150,7 +148,6 @@ export default function AdminPage() {
               </div>
             )}
 
-            {/* Tabla por cancha */}
             {fieldStats.length > 0 && (
               <div style={{
                 background: '#111a15',

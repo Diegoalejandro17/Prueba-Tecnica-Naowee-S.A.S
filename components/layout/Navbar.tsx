@@ -50,7 +50,7 @@ export default function Navbar() {
             justifyContent: 'space-between',
           }}
         >
-          {/* Logo */}
+          {/* logo */}
           <Link
             href="/canchas"
             style={{
@@ -97,7 +97,7 @@ export default function Navbar() {
             </span>
           </Link>
 
-          {/* Links Desktop */}
+          {/* links */}
           <div className="desktop-nav links">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
@@ -134,7 +134,7 @@ export default function Navbar() {
             })}
           </div>
 
-          {/* Usuario Desktop */}
+          {/* usuario */}
           <div className="desktop-nav user">
             <div style={{ textAlign: 'right' }}>
               <p
@@ -197,7 +197,7 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* Mobile */}
+          {/* mobil */}
           <div className="mobile-nav">
             <button
               onClick={() => setMenuOpen(!menuOpen)}
@@ -214,7 +214,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Menú Mobile */}
+        {/* menu hamburguesa movil */}
         {menuOpen && (
           <div className="mobile-menu">
             {navLinks.map((link) => (

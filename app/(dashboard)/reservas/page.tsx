@@ -299,7 +299,7 @@ export default function ReservasPage() {
           </div>
         ) : (
           <>
-            {/* Activas */}
+            {/* Reservs activas */}
             <div style={{marginBottom: '2.5rem'}}>
               <div style={{display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem'}}>
                 <div style={{width: '8px', height: '8px', background: '#22c55e', borderRadius: '50%', boxShadow: '0 0 8px #22c55e'}} />
@@ -363,7 +363,7 @@ export default function ReservasPage() {
               )}
             </div>
 
-            {/* Canceladas */}
+            {/*  Reservas canceladas */}
             {cancelledReservations.length > 0 && (
               <div>
                 <div style={{display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem'}}>

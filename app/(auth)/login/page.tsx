@@ -59,7 +59,7 @@ export default function LoginPage() {
 
             <div style={{position: 'relative', zIndex: 10, width: '100%', maxWidth: '480px'}}>
                 
-                {/* Logo */}
+                {/* logo */}
                 <div style={{textAlign: 'center', marginBottom: '2.5rem'}}>
                     <div style={{
                         display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
@@ -80,7 +80,7 @@ export default function LoginPage() {
                     </p>
                 </div>
 
-                {/* Card */}
+                {/* card */}
                 <div style={{
                     background: 'rgba(17, 26, 21, 0.9)',
                     backdropFilter: 'blur(12px)',
